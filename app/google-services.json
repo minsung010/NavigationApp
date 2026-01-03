@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "700663019610",
+    "firebase_url": "https://capstone-8e842-default-rtdb.firebaseio.com",
+    "project_id": "capstone-8e842",
+    "storage_bucket": "capstone-8e842.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700663019610:android:75c36585e48ad7220b0063",
+        "android_client_info": {
+          "package_name": "com.cookandroid.emergency2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdCJCwhuO-53d2d2zJJftDpoK4fhb2CoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700663019610:android:b1de3679ffeb68270b0063",
+        "android_client_info": {
+          "package_name": "com.example.gpss"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdCJCwhuO-53d2d2zJJftDpoK4fhb2CoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

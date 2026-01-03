@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Emergency Palette -->
+    <color name="emergency_red">#D32F2F</color>
+    <color name="emergency_red_dark">#B71C1C</color>
+    <color name="calm_blue">#1976D2</color>
+    <color name="background_light">#F5F5F5</color>
+    <color name="card_surface">#FFFFFF</color>
+    <color name="status_green">#388E3C</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    
+    <!-- Button Colors (State referenced) -->
+    <color name="button_start">@color/emergency_red</color>
+    <color name="button_stop">@color/text_secondary</color>
+</resources>
