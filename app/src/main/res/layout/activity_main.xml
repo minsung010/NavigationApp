@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Map Fragment (Full Screen) -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Search Container -->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="#E6FFFFFF"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/editbox_background"
+            android:hint="목적지 검색"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:singleLine="true"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:text="검색" />
+
+        <ImageButton
+            android:id="@+id/myLocationButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_mylocation"
+            app:tint="#2196F3"
+            android:scaleType="centerInside"
+            android:contentDescription="현위치" />
+    </LinearLayout>
+
+    <!-- Top TBT Container (Portrait) -->
+    <LinearLayout
+        android:id="@+id/topTbtContainer"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:elevation="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <!-- Main TBT (Left, Blue) -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.4"
+            android:background="@drawable/bg_tbt_panel"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/tbtMainIcon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@android:drawable/ic_menu_directions"
+                app:tint="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tbtMainRoad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/tbtMainIcon"
+                android:layout_marginStart="16dp"
+                android:text="판교로"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tbtMainDist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tbtMainRoad"
+                android:layout_toEndOf="@id/tbtMainIcon"
+                android:layout_marginStart="16dp"
+                android:text="230m"
+                android:textColor="#FFFFFF"
+                android:textSize="42sp"
+                android:textStyle="bold"
+                android:includeFontPadding="false"/>
+        </RelativeLayout>
+
+        <!-- Sub TBT (Right, Darker Blue) -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_top_tbt_sub"
+            android:padding="12dp">
+            
+            <ImageView
+                android:id="@+id/tbtSubIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@android:drawable/ic_menu_directions"
+                app:tint="#FFFFFF"/>
+                
+            <TextView
+                android:id="@+id/tbtSubDist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tbtSubIcon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:text="560m"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Center Map Overlay (Floating) -->
+    <LinearLayout
+        android:id="@+id/centerOverlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        tools:visibility="visible">
+
+        <!-- Dark Maneuver Icon -->
+        <ImageView
+            android:id="@+id/centerIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@android:drawable/ic_menu_directions"
+            app:tint="#333333" />
+            
+        <TextView
+            android:id="@+id/centerDist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="230m"
+            android:textColor="#333333"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"/>
+    </LinearLayout>
+
+    <!-- Speed Indicator (Bottom Left) -->
+    <TextView
+        android:id="@+id/speedIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bottomInfoContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"/>
+
+
+    <!-- Ambulance Alert Card (Top Right - Overlay on Top Bar if needed, or below) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ambulanceAlertCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp" 
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_alert_card"
+        android:elevation="8dp"
+        android:padding="12dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/alertIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_dialog_alert"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FF0000" />
+
+        <TextView
+            android:id="@+id/alertTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="119 출동차량 접근중"
+            android:textColor="#CC0000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/alertIcon"
+            app:layout_constraintStart_toEndOf="@id/alertIcon"
+            app:layout_constraintTop_toTopOf="@id/alertIcon" />
+
+        <ImageView
+            android:id="@+id/alertClose"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/alertTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#EEEEEE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/alertIcon" />
+
+        <TextView
+            android:id="@+id/alertMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="영동고속도로\n마성IC -> 신갈JC부근"
+            android:textColor="#333333"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/alertIcon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Bottom Info Container -->
+    <LinearLayout
+        android:id="@+id/bottomInfoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible">
+
+        <!-- Address Bar (Address Strip) -->
+        <TextView
+            android:id="@+id/addressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_address_bar"
+            android:padding="8dp"
+            android:text="인천국제공항"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:gravity="center_vertical|center_horizontal"/>
+            
+        <!-- Bottom Controls -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_panel"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <!-- Refresh Icon -->
+             <ImageView
+                android:id="@+id/refreshButtonIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_popup_sync"
+                app:tint="#FFFFFF"/>
+
+            <TextView
+                android:id="@+id/navTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00:58 소요"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/navRemainingDist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="75km"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <!-- Menu / Stop Button -->
+            <ImageView
+                android:id="@+id/stopNavButtonIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="#FFFFFF"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/defaultButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/startNavButton"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/zoomInButton"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:text="확대"
+            android:textSize="18sp"/>
+        <Button
+            android:id="@+id/zoomOutButton"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:text="축소"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+    <!-- Start Navigation Overlay Button -->
+    <Button
+        android:id="@+id/startNavButton"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#2196F3"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:text="안내 시작"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
